@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fronteras - XM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link href="css/codiqa.ext.min.css" rel="stylesheet">
+  <link href="css/jquery.mobile.theme-1.3.1.min.css" rel="stylesheet">
+  <link href="css/estilo_metro.css" rel="stylesheet">
+  <link href="css/jquery.mobile.structure-1.3.1.min.css" rel="stylesheet">
+  <link href="css/fronteras-xm.css" rel="stylesheet">
+
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.mobile-1.3.1.min.js"></script>
+  <script src="js/codiqa.ext.min.js"></script>
+  <script src="//da189i1jfloii.cloudfront.net/js/kinvey-html5-1.1.2.min.js"></script>
+  <script src="js/fronteras-xm.js"></script>
+</head>
+<body>
+  <div data-role="page" data-control-title="Logon" data-theme="a" id="logon">
+      <div data-theme="a" data-role="header">
+          <h5>
+              Metro
+          </h5>
+      </div>
+      <div data-role="content" style="padding: 40px">
+          <div style=" text-align:center" data-controltype="image">
+              <img style="width: 65px; height: 90px" src="img/captura-de-pantalla-2013-11-19-a-las-16.35.13.png">
+          </div>
+          <form id="login_form" action="">
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="username">
+                      Usuario
+                  </label>
+                  <input name="username" id="username" placeholder="Ingrese usuario..."
+                  value="" type="text">
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="password">
+                      Contraseña
+                  </label>
+                  <input name="password" id="password" placeholder="Ingrese contraseña"
+                  value="" type="password">
+              </div>
+              <input type="submit" data-theme="a" value="Ingresar">
+          </form>
+          <div id="login_error" data-controltype="textblock">
+              <p>
+                  <b>
+                      <br>
+                  </b>
+              </p>
+          </div>
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <div data-controltype="textblock">
+              <h6 data-mce-style="text-align: center;" style="text-align: center;">
+                  <span>
+                      Metro de Medellín
+                  </span>
+              </h6>
+          </div>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Menu" data-theme="a" id="menu">
+      <div data-theme="a" data-role="header" data-position="fixed">
+          <a id="logout" data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#logon" data-icon="home" data-iconpos="left" class="ui-btn-left">
+              Salir
+          </a>
+          <h3>
+              Metro
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 40px">
+          <div style=" text-align:center" data-controltype="image">
+              <img style="width: 80px; height: 80px" src="img/captura-de-pantalla-2013-11-19-a-las-16.35.13.png">
+          </div>
+          <hr style="height:3px; background-color:#ccc; border:0; margin-top:12px; margin-bottom:12px;">
+          <div id="bienvenidaText" data-controltype="textblock">
+              <p>
+                  <b>
+                      <br>
+                  </b>
+              </p>
+          </div>
+          <div data-controltype="htmlblock">
+              <p>
+              </p>
+              <br>
+          </div>
+          <a data-role="button" href="#fronterasBusqueda" data-icon="search" data-iconpos="left">
+              Reporte Falla Hurto
+          </a>
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <div data-controltype="textblock">
+              <h6 style="text-align: center;" data-mce-style="text-align: center;">
+                  Metro de Medellín
+              </h6>
+          </div>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Requerimientos" data-theme="a"
+  id="requerimientosBusqueda">
+      <div data-theme="a" data-role="header" data-position="fixed">
+          <a data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#menu" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Atràs
+          </a>
+          <h3>
+              Requerimientos
+          </h3>
+      </div>
+      <div data-role="content">
+          <form id="reqBusForm" action="">
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="reqBusEstReq">
+                      Estado del requerimiento
+                  </label>
+                  <select id="reqBusEstReq" name="reqBusEstReq" data-theme="a">
+                      <option value="">
+                          Seleccione...
+                      </option>
+                  </select>
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="reqBusCodSIc">
+                      Codigo SIC
+                  </label>
+                  <input name="reqBusCodSIc" id="reqBusCodSIc" placeholder="" value="" type="text">
+              </div>
+              <div data-role="fieldcontain" data-controltype="textinput">
+                  <label for="reqBusReqID">
+                      ID del requerimiento
+                  </label>
+                  <input name="reqBusReqID" id="reqBusReqID" placeholder="" value="" type="text">
+              </div>
+              <div data-role="fieldcontain" data-controltype="selectmenu">
+                  <label for="reqBusTipReq">
+                      Tipo de requerimiento
+                  </label>
+                  <select id="reqBusTipReq" name="reqBusTipReq" data-theme="a">
+                      <option value="">
+                          Seleccione...
+                      </option>
+                  </select>
+              </div>
+              <a id="reqBusSearch" data-role="button" href="#" data-icon="search" data-iconpos="left">
+                  Buscar Requerimientos
+              </a>
+          </form>
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <div data-controltype="textblock">
+              <h6 data-mce-style="text-align: center;" style="text-align: center;">
+                  <span>
+                      XM S.A. E.S.P.
+                  </span>
+              </h6>
+          </div>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Desistir Requerimiento" data-theme="a"
+  id="desistirRequerimiento">
+      <div data-theme="a" data-role="header" data-position="fixed">
+          <a data-role="button" data-transition="slide" data-theme="a" href="#menu"
+          data-icon="home" data-iconpos="left" class="ui-btn-right">
+              Home
+          </a>
+          <a data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Atràs
+          </a>
+          <h3>
+              Desistimiento
+          </h3>
+      </div>
+      <div data-role="content">
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="desReqRequerimiento">
+                  Requerimiento
+              </label>
+              <input name="desReqRequerimiento" id="desReqRequerimiento" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="dateinput">
+              <label for="desReqFecSolicitud">
+                  Fecha de Solicitud
+              </label>
+              <input name="desReqFecSolicitud" id="desReqFecSolicitud" placeholder=""
+              value="" type="date">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="desReqTipRequerimiento">
+                  Tipo de requerimiento
+              </label>
+              <select id="desReqTipRequerimiento" name="desReqTipRequerimiento" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="desReqTipFrontera">
+                  Tipo de Frontera
+              </label>
+              <select id="desReqTipFrontera" name="desReqTipFrontera" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="desReqNomFrontera">
+                  Nombre de la Frontera
+              </label>
+              <input name="desReqNomFrontera" id="desReqNomFrontera" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="desReqRepFrontera">
+                  Representante de la Frontera
+              </label>
+              <input name="desReqRepFrontera" id="desReqRepFrontera" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="desReqCodSic">
+                  Código SIC
+              </label>
+              <input name="desReqCodSic" id="desReqCodSic" placeholder="" value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="desReqContacto">
+                  Contacto
+              </label>
+              <input name="desReqContacto" id="desReqContacto" placeholder="" value=""
+              type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="desReqReqAsociado">
+                  Requerimiento Asociado
+              </label>
+              <input name="desReqReqAsociado" id="desReqReqAsociado" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textarea">
+              <label for="desReqMotDesistimiento">
+                  Motivo Desistimiento
+              </label>
+              <textarea name="desReqMotDesistimiento" id="desReqMotDesistimiento" placeholder=""></textarea>
+          </div>
+          <a id="desReqBtnDesistir" data-role="button" href="#">
+              Desistir Requerimiento
+          </a>
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <div data-controltype="textblock">
+              <h6 data-mce-style="text-align: center;" style="text-align: center;">
+                  <span>
+                      XM S.A. E.S.P.
+                  </span>
+              </h6>
+          </div>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Fronteras_list" data-theme="a"
+  id="detalleFronteras">
+      <div data-role="panel" id="panel2" data-position="right" data-display="reveal"
+      data-theme="a">
+          <ul data-role="listview" data-divider-theme="a" data-inset="false">
+              <li data-role="list-divider" role="heading">
+                  Opciones
+              </li>
+              <li data-theme="a">
+                  <a href="#reporteFallaHurto" data-transition="slide">
+                      Reporte Falla Hurto
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <div data-role="panel" id="panel1" data-position="left" data-display="reveal"
+      data-theme="a">
+          <ul data-role="listview" data-divider-theme="h" data-inset="false">
+              <li data-role="list-divider" role="heading">
+                  Divider
+              </li>
+              <li data-theme="a">
+                  <a href="" data-transition="slide">
+                      Button
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <div data-theme="a" data-role="header">
+          <a data-role="button" data-transition="slide" data-theme="a" href="#menu"
+          data-icon="home" data-iconpos="left" class="ui-btn-right">
+              Home
+          </a>
+          <a data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#fronterasBusqueda" data-icon="arrow-l" data-iconpos="left"
+          class="ui-btn-left">
+              Atràs
+          </a>
+          <h3>
+              Falla Hurto
+          </h3>
+      </div>
+      <div data-role="content">
+          <ul id="desReqListaFronteras" data-role="listview" data-divider-theme="a"
+          data-inset="true">
+              <li data-role="list-divider" role="heading">
+                  Seleccione
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Requerimientos_list" data-theme="a"
+  id="detalleRequerimiento">
+      <div data-theme="a" data-role="header">
+          <a data-role="button" data-transition="slide" data-theme="a" href="#menu"
+          data-icon="home" data-iconpos="left" class="ui-btn-right">
+              Home
+          </a>
+          <a data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#requerimientosBusqueda" data-icon="arrow-l" data-iconpos="left"
+          class="ui-btn-left">
+              Atràs
+          </a>
+          <h3>
+              Requerimientos
+          </h3>
+      </div>
+      <div data-role="content">
+          <ul id="desReqListaRequerimientos" data-role="listview" data-divider-theme="a"
+          data-inset="true">
+              <li data-role="list-divider" role="heading">
+                  Seleccione Para Desistir Requerimiento
+              </li>
+          </ul>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Reportar Falla Hurto" data-theme="a"
+  id="reporteFallaHurto">
+      <div data-theme="a" data-role="header" data-position="fixed">
+          <a data-role="button" data-transition="slide" data-theme="a" href="#menu"
+          data-icon="home" data-iconpos="left" class="ui-btn-right">
+              Home
+          </a>
+          <a data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#detalleFronteras" data-icon="arrow-l" data-iconpos="left"
+          class="ui-btn-left">
+              Atràs
+          </a>
+          <h3>
+              Falla Hurto
+          </h3>
+      </div>
+      <div data-role="content">
+          <a id="tomarFotoBtn" data-role="button" href="#">
+              Tomar Foto
+          </a>
+          <div style="width: 220px; height: 220px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;"
+          data-controltype="image" id="image">
+              <img src="https://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHurRequerimiento">
+                  Requerimiento
+              </label>
+              <input name="falHurRequerimiento" id="falHurRequerimiento" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHurContacto">
+                  Contacto
+              </label>
+              <input name="falHurContacto" id="falHurContacto" placeholder="" value=""
+              type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="dateinput">
+              <label for="falHurFechaInicio">
+                  Fecha de Inicio
+              </label>
+              <input name="falHurFechaInicio" id="falHurFechaInicio" placeholder=""
+              value="" type="date">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="falHurTipRequerimiento">
+                  Tipo de Requerimiento
+              </label>
+              <select id="falHurTipRequerimiento" name="falHurTipRequerimiento" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="dateinput">
+              <label for="falHurFecMax">
+                  Fecha Máxima
+              </label>
+              <input name="falHurFecMax" id="falHurFecMax" placeholder="" value="" type="date">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHurCodSIC">
+                  Codigo SIC
+              </label>
+              <input name="falHurCodSIC" id="falHurCodSIC" placeholder="" value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHurRepFrontera">
+                  Representante de la Frontera
+              </label>
+              <input name="falHurRepFrontera" id="falHurRepFrontera" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="falHurTipFrontera">
+                  Tipo de Frontera
+              </label>
+              <select id="falHurTipFrontera" name="falHurTipFrontera" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+                  <option value="1">
+                      Tipo entre Agentes
+                  </option>
+                  <option value="2">
+                      Tipo Regulado
+                  </option>
+                  <option value="3">
+                      Tipo No Regulado
+                  </option>
+                  <option value="4">
+                      Alumbrado Publ. Sin equipo de medida
+                  </option>
+                  <option value="5">
+                      Alumbrado Publ. Con equipo de medida
+                  </option>
+                  <option value="6">
+                      Tipo Tie
+                  </option>
+                  <option value="7">
+                      Tipo Internacional
+                  </option>
+                  <option value="8">
+                      Tipo Distribución
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHurAgeReporta">
+                  Agente Reporta
+              </label>
+              <input name="falHurAgeReporta" id="falHurAgeReporta" placeholder="" value=""
+              type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHurNomFrontera">
+                  Nombre Frontera
+              </label>
+              <input name="falHurNomFrontera" id="falHurNomFrontera" placeholder=""
+              value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="falHureqMedida">
+                  Equipo de Medida
+              </label>
+              <input name="falHureqMedida" id="falHureqMedida" placeholder="" value=""
+              type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="falHurTipReporte">
+                  Tipo de reporte
+              </label>
+              <select id="falHurTipReporte" name="falHurTipReporte" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+                  <option value="1">
+                      Tipo entre Agentes
+                  </option>
+                  <option value="2">
+                      Tipo Regulado
+                  </option>
+                  <option value="3">
+                      Tipo No Regulado
+                  </option>
+                  <option value="4">
+                      Alumbrado Publ. Sin equipo de medida
+                  </option>
+                  <option value="5">
+                      Alumbrado Publ. Con equipo de medida
+                  </option>
+                  <option value="6">
+                      Tipo Tie
+                  </option>
+                  <option value="7">
+                      Tipo Internacional
+                  </option>
+                  <option value="8">
+                      Tipo Distribución
+                  </option>
+              </select>
+          </div>
+          <a id="falHurBtnGuardar" data-role="button" href="#">
+              Guardar Reporte
+          </a>
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <div data-controltype="textblock">
+              <h6 data-mce-style="text-align: center;" style="text-align: center;">
+                  <span>
+                      Metro de Medellín
+                  </span>
+              </h6>
+          </div>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Fronteras" data-theme="a" id="fronterasBusqueda">
+      <div data-theme="a" data-role="header" data-position="fixed">
+          <a data-role="button" data-direction="reverse" data-transition="slide"
+          data-theme="a" href="#menu" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+              Atràs
+          </a>
+          <h3>
+              Reporte Falla
+          </h3>
+      </div>
+      <div data-role="content">
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="fronBusSic">
+                  Codigo SIC
+              </label>
+              <input name="fronBusSic" id="fronBusSic" placeholder="" value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="fronBusCodProCon">
+                  Codigo Propio Contador
+              </label>
+              <input name="fronBusCodProCon" id="fronBusCodProCon" placeholder="" value=""
+              type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="fronBusFronTipo">
+                  Tipo de Frontera
+              </label>
+              <select id="fronBusFronTipo" name="fronBusFronTipo" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="fronBusNombre">
+                  Nombre
+              </label>
+              <input name="fronBusNombre" id="fronBusNombre" placeholder="" value=""
+              type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="fronBusNivTension">
+                  Nivel de Tensión
+              </label>
+              <select id="fronBusNivTension" name="fronBusNivTension" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="fronBusNiu">
+                  NIU
+              </label>
+              <input name="fronBusNiu" id="fronBusNiu" placeholder="" value="" type="text">
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="fronBusDepartamento">
+                  Departamento
+              </label>
+              <select id="fronBusDepartamento" name="fronBusDepartamento" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <label for="fronBusCiudad">
+                  Ciudad
+              </label>
+              <select id="fronBusCiudad" name="fronBusCiudad" data-theme="a">
+                  <option value="">
+                      Seleccione...
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <label for="fronBusAgente">
+                  Agente
+              </label>
+              <input name="fronBusAgente" id="fronBusAgente" placeholder="" value=""
+              type="text">
+          </div>
+          <a id="fronBusSearch" data-role="button" href="#" data-icon="search" data-iconpos="left">
+              Buscar Fronteras
+          </a>
+      </div>
+      <div data-theme="a" data-role="footer" data-position="fixed">
+          <div data-controltype="textblock">
+              <h6 data-mce-style="text-align: center;" style="text-align: center;">
+                  <span>
+                      Metro de Medellín
+                  </span>
+              </h6>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
