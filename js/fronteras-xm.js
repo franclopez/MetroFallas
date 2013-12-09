@@ -117,7 +117,7 @@ $(function() {
         			$(document).on("pageshow", "#menu", function () {
         				var user = Kinvey.getActiveUser();
         				console.log(user);
-        				var txtBienv = "Bienvenido: " + user.first_name + " " + user.last_name;
+        				var txtBienv = "Bienvenido al sistema de reporte de Fallos: " + user.first_name + " " + user.last_name;
         				$('#bienvenidaText').text(txtBienv);
         				console.log(txtBienv);
         			});
@@ -480,7 +480,7 @@ $(function() {
         					   $.each(items, function(index, item) {
         						  console.log(item.CodigoSIC);
         						  $('#desReqListaFronteras').append('<li data-theme="c"><a href=""  data-transition="slide" data-id="' +item._id
-        						  + '"><b class="highlight" >NIU:</b>  ' + item.NIU + '<br/><b class="highlight">Nombre:</b> ' + item.Nombre+ '<br/><b class="highlight">Codigo:</b>  '  + item.CodigoSIC
+        						  + '"><b class="highlight" >Codigo Interno:</b>  ' + item.NIU + '<br/><b class="highlight">Nombre:</b> ' + item.Nombre+ '<br/><b class="highlight">Codigo:</b>  '  + item.CodigoSIC
         						  +'</a></li>');
         					   });
         					   $('#desReqListaFronteras').listview('refresh');
